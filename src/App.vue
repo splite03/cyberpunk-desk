@@ -179,6 +179,12 @@
       <small-ship style="top:275px;left:1570px;animation-delay:.5s;"></small-ship>
       <small-ship style="top:231px;left:1492px;animation-delay:.3s;"></small-ship>
 
+      <!-- ПАЧКА САМАЯ ПРАВАЯ -->
+
+      <small-ship style="top:426px;animation-delay:.2s;right:40px"></small-ship>
+      <small-ship style="top:428px;animation-delay:.5s;right:14px"></small-ship>
+      <small-ship style="top:451px;animation-delay:.3s;right:7px"></small-ship>
+
       <!-- ПРОЖЕКТОРА -->
 
       <div class="light-stick">

@@ -213,7 +213,6 @@
     height: 9px;
     width: 13px;
     top: 100px;
-    left: 230px;
     animation: up-down 1s alternate infinite steps(5);
 }
 .very-small-ship { 
