@@ -156,11 +156,7 @@
         <div class="ship-one-light light-ship"></div>
       </div>
 
-      <div class="very-small-ship-wrapper ship-wrapper">
-        <div class="very-small-ship ship"></div>
-        <div class="very-small-ship-light light-ship"></div>
-      </div>
-
+      <small-ship style="top: 300px; left: 250px"></small-ship>
       <small-ship style="top:348px;left:176px;animation-delay: .5s;"></small-ship>
 
       <!-- ПАЧКА ВОЗЛЕ ЦЕНТРАЛЬНОГО ПРОЖЕКТОРА -->
@@ -171,6 +167,14 @@
       <small-ship style="top:361px;left:774px;animation-delay: .3s;"></small-ship>
       <small-ship style="top:336px;left:665px;animation-delay: .5s;"></small-ship>
       <small-ship style="top:344px;left:720px;animation-delay: .8s;"></small-ship>
+
+      <!-- ПАЧКА ПОД САМОЙ ВЫСОКОЙ БАШНЕЙ -->
+
+      <small-ship style="top: 400px; left: 977px; width: 9px; height: 6px; animation-delay: .2s;"></small-ship>
+      <small-ship style="top: 420px; left: 1030px; width: 9px; height: 6px; animation-delay: .4s"></small-ship>
+      <small-ship style="top: 379px; left: 1011px; width: 9px; height: 6px; animation-delay: .1s"></small-ship>
+      <small-ship style="top: 393px; left: 1037px; width: 9px; height: 6px; animation-delay: ..5s"></small-ship>
+      <small-ship style="top: 407px; left: 1060px; width: 9px; height: 6px; animation-delay: .3s"></small-ship>
 
       <!-- ПАЧКА ВОЗЛЕ БОЛЬШОГО ЖЕЛТОГО БОРДА -->
 
