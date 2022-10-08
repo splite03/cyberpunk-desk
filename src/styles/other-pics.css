@@ -1,0 +1,47 @@
+
+.elevator-wrapper{
+    position: absolute;
+    bottom: 214px;
+    left: 312px;
+    height: 206px;
+    width: 18px;
+}
+.elevator-path{
+    height: 100%;
+    width: 100%;
+    z-index: 42;
+    background-image: url(@/assets/animated-parts/other/elevator-path.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.elevator{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    height: 41px;
+    width: 22px;
+    background-image: url(@/assets/animated-parts/other/elevator.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 41;
+}
+.vape{
+    background-image: url(@/assets/animated-parts/other/vape-export.gif);
+    background-size: cover;
+    height: 84px;
+    width: 39px;
+    position: absolute;
+    bottom: 277px;
+    right: 337px;
+    z-index: 20;
+}
+.smoke-guy{
+    background-image: url(@/assets/animated-parts/other/smoke-guy.gif);
+    background-size: cover;
+    height: 49px;
+    width: 42px;
+    position: absolute;
+    bottom: 180px;
+    left: 727px;
+    z-index: 38;
+}

@@ -1,0 +1,59 @@
+
+/* УРОВНИ Z-INDEX ДЛЯ ФОНОВ И PICS :  3rd - 10, 2nd - 20, 1st - 30, other pics - 40*/
+
+@font-face {
+    font-family: 'Pixel';
+    src: url(@/fonts/pixel.ttf);
+}
+:root{
+    --top-pos:0;
+    --left-pos:0;
+}
+  
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pixel';
+}
+body{
+    background-color: #07033e;
+    height: 100vh;
+    width: 100vw;
+}
+.background{
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+.img{
+    background-image: url(@/assets/back-city.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 940px;
+    width: 1920px;
+    position: relative;
+    top: var(--top-pos);
+    left: var(--left-pos);
+}
+.depth-levels{
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 940px;
+    width: 1920px;
+}
+.third-level-depth { 
+    background-image: url(@/assets/depth-levels/third-level-depth.png);
+    z-index: 10;
+}
+.second-level-depth { 
+    background-image: url(@/assets/depth-levels/second-level-depth.png);
+    z-index: 20;
+}
+.first-level-depth { 
+    background-image: url(@/assets/depth-levels/first-level-depth.png);
+    z-index: 30;
+}
