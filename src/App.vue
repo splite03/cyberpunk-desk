@@ -115,6 +115,11 @@
         <div class="fish-small-ship-light light-ship"></div>
       </div>
 
+      <div class="fish-small-ship-wrapper ship-wrapper" style="right: 200px; top: 300px; animation-delay: .3s;">
+        <div class="fish-small-ship ship"></div>
+        <div class="fish-small-ship-light light-ship"></div>
+      </div>
+
       <div class="gun-ship-wrapper ship-wrapper">
         <div class="gun-ship ship"></div>
         <div class="gun-ship-light light-ship"></div>
@@ -154,6 +159,14 @@
       <div class="ship-one-wrapper ship-wrapper">
         <div class="ship-one ship"></div>
         <div class="ship-one-light light-ship"></div>
+      </div>
+
+      <div class="small-bird-flying-ship-wrapper ship-wrapper">
+        <div class="small-bird-flying-ship ship"></div>
+      </div>
+
+      <div class="small-bird-flying-ship-two-wrapper ship-wrapper">
+        <div class="small-bird-flying-ship ship"></div>
       </div>
 
       <small-ship style="top: 300px; left: 250px"></small-ship>

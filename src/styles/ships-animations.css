@@ -53,7 +53,7 @@
 }
 @keyframes small-fish-up-down {
     to{
-        top: 410px;
+        transform: translateY(10px);
     }
 }
 @keyframes gun-ship-up {
