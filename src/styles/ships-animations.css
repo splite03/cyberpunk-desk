@@ -196,6 +196,30 @@
         transform: scale(.1) rotate(10deg);
     }
 }
+@keyframes moving-left-small-bird-flying-ship {
+    40%{
+        left: 355px;
+    }
+    100%{
+        left: 355px;
+    }
+}
+@keyframes moving-left {
+    40%{
+        transform: translateX(-2000px);
+    }
+    100%{
+        transform: translateX(-2000px);
+    }
+}
+@keyframes moving-right {
+    40%{
+        transform: translateX(2000px);
+    }
+    100%{
+        transform: translateX(2000px);
+    }
+}
 @keyframes up-down {
     to{
         transform: translateY(5px);

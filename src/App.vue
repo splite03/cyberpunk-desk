@@ -166,7 +166,7 @@
       </div>
 
       <div class="small-bird-flying-ship-two-wrapper ship-wrapper">
-        <div class="small-bird-flying-ship ship"></div>
+        <div class="small-bird-flying-ship-two ship"></div>
       </div>
 
       <small-ship style="top: 300px; left: 250px"></small-ship>
@@ -191,10 +191,10 @@
 
       <!-- ПАЧКА ВОЗЛЕ БОЛЬШОГО ЖЕЛТОГО БОРДА -->
 
-      <small-ship style="top:249px;left:1460px;animation-delay:0s;"></small-ship>
-      <small-ship style="top:262px;left:1517px;animation-delay:.2s;"></small-ship>
-      <small-ship style="top:275px;left:1570px;animation-delay:.5s;"></small-ship>
-      <small-ship style="top:231px;left:1492px;animation-delay:.3s;"></small-ship>
+      <small-ship style="top:249px;left:1460px;animation-delay:0s;z-index: 11;"></small-ship>
+      <small-ship style="top:262px;left:1517px;animation-delay:.2s;z-index: 11"></small-ship>
+      <small-ship style="top:275px;left:1570px;animation-delay:.5s;z-index: 11"></small-ship>
+      <small-ship style="top:231px;left:1492px;animation-delay:.3s;z-index: 11"></small-ship>
 
       <!-- ПАЧКА САМАЯ ПРАВАЯ -->
 

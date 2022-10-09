@@ -18,8 +18,8 @@
     height: 48px;
     width: 93px;
     left: 472px;
-    top: 108px;
-    animation: dirigible-move 6s infinite steps(10);
+    top: 178px;
+    animation: up-down 3s infinite alternate steps(10);
 }
 .dirigible { 
     background-image: url(@/assets/animated-parts/ships/dirigible2.png);
@@ -196,8 +196,10 @@
 .ship-one-wrapper { 
     height: 20px;
     width: 20px;
-    top: 100px;
-    left: 500px;
+    top: 379px;
+    left: 1336px;
+    animation: up-down 3s alternate infinite steps(10);
+    z-index: 11;
 }
 .ship3-2{
     left: -153px;
@@ -208,6 +210,27 @@
 }
 .ship-one { 
     background-image: url(@/assets/animated-parts/ships/ship-one.png);
+}
+.small-bird-flying-ship-wrapper { 
+    width: 20px;
+    height: 11px;
+    right: -10px;
+    top: 340px;
+    animation: moving-left 18s backwards infinite steps(100);
+}
+.small-bird-flying-ship { 
+    background-image: url(@/assets/animated-parts/ships/small-bird-flying-ship.png);
+}
+.small-bird-flying-ship-two-wrapper { 
+    width: 23px;
+    height: 14px;
+    right: -10px;
+    top: 330px;
+    z-index: 11;
+    animation: moving-left 24s backwards infinite steps(130);
+}
+.small-bird-flying-ship-two{
+    background-image: url(@/assets/animated-parts/ships/small-bird-flying-ship-2.png);
 }
 .very-small-ship-wrapper { 
     height: 9px;
