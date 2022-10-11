@@ -31,7 +31,7 @@ export default {
       move(e){
         let topPos =  document.documentElement.style
         let leftPos = document.documentElement.style
-        console.log(e);
+        
         if (!this.grabed) return
         topPos.setProperty('--top-pos',`${this.y += e.movementY}px` )
         leftPos.setProperty('--left-pos', `${this.x += e.movementX}px`)
@@ -100,43 +100,38 @@ export default {
             light.style.opacity = `1`
             this.scaleFalsityToggle(bord.classList[0])
         },1001)
+      },
+      // ОБНОВЛЕНИЕ GIF ПРИ КАЖДОЙ ПЕРЕЗАГРУЗКЕ, ЧТОБЫ СИНХРОНИЗИРОВАТЬ С BOX-SHADOW
+      gifRestart(){
+        const hotdog = document.querySelector('.hot-dog')
+        const empty = document.querySelector('.empty')
+        let hotdogSrc = hotdog.getAttribute('src')
+        let emptySrc = empty.getAttribute('src')
+
+        hotdog.setAttribute('src', emptySrc)
+        hotdog.style.opacity = '0'
+        setTimeout(() => {
+          hotdog.setAttribute('src', hotdogSrc)
+          hotdog.style.opacity = '1'
+        }, 30)
+      },
+      // ЛОЧИМ СКРОЛЛ ИБО ТАК ПРОЩЕ ВСЕГО ДОДЖИТЬ МОМЕНТЫ С РЕСАЙЗОМ
+      lockScroll(){
+        window.addEventListener('keydown', (event) => {
+          if (event.ctrlKey == true && (event.which == '61' || event.which == '107' || event.which == '173' || event.which == '109'  || event.which == '187'  || event.which == '189'  ) ) {
+            event.preventDefault();
+          }
+        })
+        window.addEventListener('mousewheel', (event) => {
+          if (event.ctrlKey == true) {
+            event.preventDefault();
+          }
+        },{passive: false})
       }
     },
     mounted(){
-      window.addEventListener('mouseup',() => this.grabed = false)
-      setTimeout(() => {
-        document.querySelector('.gun-ship-wrapper').style.left = '-100px'
-      }, 39999);
-
-      const img = document.querySelector('.img')
-      const background = document.querySelector('.background')
-
-      // img.addEventListener('touchstart', (e) => {
-
-      //   this.xStart = e.touches[0].clientX
-      //   this.yStart = e.touches[0].clientY
-      //   this.grabed = true
-      // })
-      // img.addEventListener('touchend', () => {
-
-      //   this.grabed = false
-      //   this.curX = this.xPos - this.xStart
-      //   this.curY = this.yPos - this.yStart
-      // })
-      // background.addEventListener('touchmove', (e) => {
-      //   this.movePhone(e)
-      // })
-
-      const hotdog = document.querySelector('.hot-dog')
-      const empty = document.querySelector('.empty')
-      let hotdogSrc = hotdog.getAttribute('src')
-      let emptySrc = empty.getAttribute('src')
-
-      hotdog.setAttribute('src', emptySrc)
-      hotdog.style.opacity = '0'
-      setTimeout(() => {
-        hotdog.setAttribute('src', hotdogSrc)
-        hotdog.style.opacity = '1'
-      }, 30)
+      window.addEventListener('mouseup',() => this.grabed = false) // ЗАХВАТ ОКНА
+      this.gifRestart()
+      this.lockScroll()
     }
   }

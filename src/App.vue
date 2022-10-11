@@ -172,6 +172,11 @@
       <small-ship style="top: 300px; left: 250px"></small-ship>
       <small-ship style="top:348px;left:176px;animation-delay: .5s;"></small-ship>
 
+      <img src="@/assets/animated-parts/other/test.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 51;opacity: 0; animation: opacity-on .4s forwards" alt="">
+      <img src="@/assets/animated-parts/other/test-purple.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 50;opacity: 0; animation: opacity-on .4s forwards" alt="">
+      <img src="@/assets/animated-parts/other/test-white.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 51;opacity: .8;;animation: opacity-off .4s forwards" alt="">
+      <input type="text" style="font-family: 'Pixel'">
+
       <!-- ПАЧКА ВОЗЛЕ ЦЕНТРАЛЬНОГО ПРОЖЕКТОРА -->
 
       <small-ship style="top:366px;left:635px;animation-delay: 0;"></small-ship>

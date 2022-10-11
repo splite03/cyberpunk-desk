@@ -50,10 +50,10 @@
     /* animation: test 50s 3s forwards 1; */
 }
 .left-pink-bord-wrapper{
-    height: 126px;
-    width: 47px;
-    bottom: 339px;
-    left: 384px;
+    height: 13.4%;
+    width: 2.39%;
+    bottom: 36%;
+    left: 20%;
 }
 .left-pink-bord{
     background-image: url(@/assets/animated-parts/bords/left-pink-bord.png);

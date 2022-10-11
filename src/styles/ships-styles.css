@@ -115,7 +115,7 @@
 .gun-ship-wrapper { 
     height: 46px;
     width: 94px;
-    top: 1000px;
+    top: 880px;
     left: 942px;
     animation: gun-ship-up 10s 1 steps(100) forwards, 
     gun-ship-up-slow 2s 10s 1 steps(12) forwards, 

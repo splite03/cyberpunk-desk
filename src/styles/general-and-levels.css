@@ -17,7 +17,7 @@
     font-family: 'Pixel';
 }
 body{
-    background-color: #07033e;
+    background-color: #010137;
     height: 100vh;
     width: 100vw;
 }
@@ -56,4 +56,74 @@ body{
 .first-level-depth { 
     background-image: url(@/assets/depth-levels/first-level-depth.png);
     z-index: 30;
+}
+@media (max-width: 1600px) and (min-height: 760px){
+    .img{
+        transform: scale(.9);
+        left: -206px;
+        top: -100px;
+    }
+}
+@media (max-width: 1600px) and (min-height: 884px){
+    .img{
+        transform: scale(1);
+        left: -206px;
+        top: -50px;
+    }
+}
+@media (max-width: 1366px){
+    .img{
+        transform: scale(.75);
+        left: -316px;
+        top: -205px;
+    }
+}
+@media (max-width: 1280px) and (min-height: 580px){
+    .img{
+        transform: scale(.67);
+        left: -316px;
+        top: -205px;
+    }
+}
+@media (max-width: 1280px) and (min-height: 628px){
+    .img{
+        transform: scale(.7);
+        left: -316px;
+        top: -155px;
+    }
+}
+@media (max-width: 1280px) and (min-height: 660px){
+    .img{
+        transform: scale(.8);
+        left: -316px;
+        top: -185px;
+    }
+}
+@media (max-width: 1280px) and (min-height: 820px){
+    .img{
+        transform: scale(1);
+        left: -316px;
+        top: -100px;
+    }
+}
+@media (max-width: 1280px) and (min-height: 884px){
+    .img{
+        transform: scale(1);
+        left: -316px;
+        top: -50px;
+    }
+}
+@keyframes opacity-on {
+    to{
+        opacity: 1;
+    }
+}
+@keyframes opacity-off {
+    to{
+        opacity: 0;
+    }
+}
+@font-face {
+    font-family: 'Pixel';
+    src: url(/);
 }
