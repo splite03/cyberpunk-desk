@@ -15,11 +15,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Pixel';
+    /* pointer-events: none; */
 }
 body{
     background-color: #010137;
     height: 100vh;
     width: 100vw;
+}
+.container{
+    margin: 0 auto;
+    max-width: 1400px;
 }
 .background{
     overflow: hidden;
@@ -44,6 +49,7 @@ body{
     background-position: center;
     height: 940px;
     width: 1920px;
+    pointer-events: none;
 }
 .third-level-depth { 
     background-image: url(@/assets/depth-levels/third-level-depth.png);
@@ -122,8 +128,4 @@ body{
     to{
         opacity: 0;
     }
-}
-@font-face {
-    font-family: 'Pixel';
-    src: url(/);
 }

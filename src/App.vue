@@ -172,20 +172,16 @@
       <small-ship style="top: 300px; left: 250px"></small-ship>
       <small-ship style="top:348px;left:176px;animation-delay: .5s;"></small-ship>
 
-      <img src="@/assets/animated-parts/other/test.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 51;opacity: 0; animation: opacity-on .4s forwards" alt="">
-      <img src="@/assets/animated-parts/other/test-purple.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 50;opacity: 0; animation: opacity-on .4s forwards" alt="">
-      <img src="@/assets/animated-parts/other/test-white.png" style="height:600px; width: 1000px; position: absolute; top: 200px; left: 250px; z-index: 51;opacity: .8;;animation: opacity-off .4s forwards" alt="">
-      <input type="text" style="font-family: 'Pixel'">
-
+      
       <!-- ПАЧКА ВОЗЛЕ ЦЕНТРАЛЬНОГО ПРОЖЕКТОРА -->
-
+      
       <small-ship style="top:366px;left:635px;animation-delay: 0;"></small-ship>
       <small-ship style="top:391px;left:677px;animation-delay: .2s;"></small-ship>
       <small-ship style="top:382px;left:729px;animation-delay: .5s;"></small-ship>
       <small-ship style="top:361px;left:774px;animation-delay: .3s;"></small-ship>
       <small-ship style="top:336px;left:665px;animation-delay: .5s;"></small-ship>
       <small-ship style="top:344px;left:720px;animation-delay: .8s;"></small-ship>
-
+      
       <!-- ПАЧКА ПОД САМОЙ ВЫСОКОЙ БАШНЕЙ -->
 
       <small-ship style="top: 400px; left: 977px; width: 9px; height: 6px; animation-delay: .2s;"></small-ship>
@@ -193,35 +189,35 @@
       <small-ship style="top: 379px; left: 1011px; width: 9px; height: 6px; animation-delay: .1s"></small-ship>
       <small-ship style="top: 393px; left: 1037px; width: 9px; height: 6px; animation-delay: ..5s"></small-ship>
       <small-ship style="top: 407px; left: 1060px; width: 9px; height: 6px; animation-delay: .3s"></small-ship>
-
+      
       <!-- ПАЧКА ВОЗЛЕ БОЛЬШОГО ЖЕЛТОГО БОРДА -->
-
+      
       <small-ship style="top:249px;left:1460px;animation-delay:0s;z-index: 11;"></small-ship>
       <small-ship style="top:262px;left:1517px;animation-delay:.2s;z-index: 11"></small-ship>
       <small-ship style="top:275px;left:1570px;animation-delay:.5s;z-index: 11"></small-ship>
       <small-ship style="top:231px;left:1492px;animation-delay:.3s;z-index: 11"></small-ship>
-
+      
       <!-- ПАЧКА САМАЯ ПРАВАЯ -->
-
+      
       <small-ship style="top:426px;animation-delay:.2s;right:40px"></small-ship>
       <small-ship style="top:428px;animation-delay:.5s;right:14px"></small-ship>
       <small-ship style="top:451px;animation-delay:.3s;right:7px"></small-ship>
-
+      
       <!-- ПРОЖЕКТОРА -->
-
+      
       <div class="light-stick">
         <img src="@/assets/animated-parts/other/light-stick.png" alt="">
       </div>
-
+      
       <div class="long-light-stick first-light-stick">
         <img src="@/assets/animated-parts/other/long-light-stick.png" alt="">
       </div>
       <div class="long-light-stick second-light-stick">
         <img src="@/assets/animated-parts/other/long-light-stick.png" alt="">
       </div>
-
+      
       <!-- ОСТАЛЬНОЕ -->
-
+      
       <div class="elevator-wrapper">
         <div class="elevator-path"></div>
         <div class="elevator"></div>
@@ -231,7 +227,21 @@
       </div>
       <div class="vape"></div>
       <div class="smoke-guy"></div>
+      
+    </div>
 
+    <div class="container">
+      <div class="table">
+        <div class="light-top"></div>
+        <div class="table-body">
+          <p class="text-notes">Hello</p>
+          <p class="text-notes">My name is Daniel</p>
+          <p class="text-notes">And here is Notes</p>
+          <p class="text-notes">...</p>
+          <p class="text-notes">Welcome!</p>
+        </div>
+        <div class="light-bot"></div>
+      </div>
     </div>
   </div>
   <div class="container"></div>
@@ -242,3 +252,33 @@ import logic from './logic.js'
 
 export default logic
 </script>
+
+<style>
+.table { 
+  height: 80vh;
+  width: 1000px;
+  z-index: 50;
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 500px);
+}
+.light-top { 
+  width: 100%;
+  box-shadow: 0 0 10px 10px #005aff;
+}
+.table-body { 
+  height: 100%;
+  background: #006aff45;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+.light-bot { 
+  width: 100%;
+  box-shadow: 0 0 10px 10px #005aff;
+}
+.text-notes{
+  font-size: 40px;
+  color: white;
+  text-shadow: 0 0 5px rgb(133 184 255), 0 0 10px rgb(53 137 255), 0 0 15px rgb(0 107 255);
+}
+</style>
