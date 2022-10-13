@@ -1,5 +1,5 @@
 <template>
-  <div class="background" @mousemove="move($event)">
+  <div class="background" @mousemove.prevent="move($event)">
     <div class="img" @mousedown.prevent="grabed = true">
 
       <!-- ТРИ УРОВНЯ ГЛУБИНЫ - СЛОИ ГОРОДА -->
@@ -231,8 +231,10 @@
     </div>
 
     <div class="container">
-      <div class="table">
-        <div class="light-top"></div>
+      <div class="table" @mousemove.prevent="">
+        <div class="light-top">
+          <div class="light-top" style="box-shadow: 0 0 4px 2px white"></div>
+        </div>
         <div class="table-body">
           <p class="text-notes">Hello</p>
           <p class="text-notes">My name is Daniel</p>
@@ -240,7 +242,9 @@
           <p class="text-notes">...</p>
           <p class="text-notes">Welcome!</p>
         </div>
-        <div class="light-bot"></div>
+        <div class="light-bot">
+          <div class="light-bot" style="box-shadow: 0 0 4px 2px white"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -255,22 +259,23 @@ export default logic
 
 <style>
 .table { 
-  height: 80vh;
   width: 1000px;
   z-index: 50;
   position: absolute;
   top: 10%;
   left: calc(50% - 500px);
+  animation: scale-null .6s .5s forwards 1; 
 }
 .light-top { 
   width: 100%;
   box-shadow: 0 0 10px 10px #005aff;
 }
 .table-body { 
-  height: 100%;
-  background: #006aff45;
+  height: 80vh;
+  background: #006aff6b;
   padding-top: 30px;
   padding-left: 20px;
+  /* animation: scale-null .6s .5s forwards 1; */
 }
 .light-bot { 
   width: 100%;
@@ -280,5 +285,11 @@ export default logic
   font-size: 40px;
   color: white;
   text-shadow: 0 0 5px rgb(133 184 255), 0 0 10px rgb(53 137 255), 0 0 15px rgb(0 107 255);
+}
+@keyframes scale-null {
+  to{
+    transform: scaleY(0);
+    opacity: .3;
+  }
 }
 </style>

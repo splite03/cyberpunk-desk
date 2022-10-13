@@ -41,6 +41,7 @@ body{
     position: relative;
     top: var(--top-pos);
     left: var(--left-pos);
+    user-select: none;
 }
 .depth-levels{
     position: absolute;
