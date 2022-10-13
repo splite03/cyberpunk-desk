@@ -231,9 +231,11 @@
     </div>
 
     <div class="container">
-      <div class="table" @mousemove.prevent="">
-        <div class="light-top">
-          <div class="light-top" style="box-shadow: 0 0 4px 2px white"></div>
+      <div class="table">
+        <div class="light-top" style="margin-bottom: 5px">
+          <div class="light-top" style="box-shadow: 0 0 4px 2px white">
+            <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
+          </div>
         </div>
         <div class="table-body">
           <p class="text-notes">Hello</p>
@@ -243,7 +245,9 @@
           <p class="text-notes">Welcome!</p>
         </div>
         <div class="light-bot">
-          <div class="light-bot" style="box-shadow: 0 0 4px 2px white"></div>
+          <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
+            <div class="light-bot" style="box-shadow: 0 0 1px 1px white"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -259,27 +263,40 @@ export default logic
 
 <style>
 .table { 
+  margin: 50vh auto;
   width: 1000px;
+  height: 0;
   z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   position: absolute;
-  top: 10%;
+  top: 10%;  
   left: calc(50% - 500px);
-  animation: scale-null .6s .5s forwards 1; 
+  transform: scaleX(0);
+  opacity: 0;
+  animation: scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15); 
 }
 .light-top { 
   width: 100%;
-  box-shadow: 0 0 10px 10px #005aff;
+  box-shadow: 0 0 10px 10px #00e0ff;
+  /* margin: 0 0 5px 0; */
 }
 .table-body { 
-  height: 80vh;
-  background: #006aff6b;
-  padding-top: 30px;
-  padding-left: 20px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00e0ff6b, #00ffc46b);
+  overflow: hidden;
   /* animation: scale-null .6s .5s forwards 1; */
+}
+.table-body p{
+  padding-left: 20px;
+}
+.table-body p:first-child{
+  padding-top: 30px;
 }
 .light-bot { 
   width: 100%;
-  box-shadow: 0 0 10px 10px #005aff;
+  box-shadow: 0 0 10px 10px #00e0ff;
 }
 .text-notes{
   font-size: 40px;
@@ -288,8 +305,30 @@ export default logic
 }
 @keyframes scale-null {
   to{
-    transform: scaleY(0);
-    opacity: .3;
+    /* transform: scaleY(0); */
+    height: 0;
+  }
+}
+@keyframes scaleX-null {
+  to{
+    transform: scaleX(0);
+  }
+}
+@keyframes scale-full {
+  to{
+    /* transform: scaleY(1); */
+    height: 80vh;
+    margin: 0 auto;
+    top: 10%;
+  }
+}
+@keyframes scaleX-full {
+  50%{
+    opacity: 1;
+  }
+  100%{
+    transform: scaleX(1);
+    opacity: 1;
   }
 }
 </style>
