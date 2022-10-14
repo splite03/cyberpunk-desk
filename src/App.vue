@@ -231,6 +231,7 @@
     </div>
 
     <div class="container">
+
       <div class="table">
         <div class="light-top" style="margin-bottom: 5px">
           <div class="light-top" style="box-shadow: 0 0 4px 2px white">
@@ -250,6 +251,27 @@
           </div>
         </div>
       </div>
+
+      <div class="table" style="margin: 0;top: 0;height: 80vh;left: 0;position: absolute;overflow: hidden;clip-path: polygon(0% 10%, 100% 10%,100% 15%, 0% 15%);animation: clip-pathw 10s 3s backwards infinite steps(100);left: calc(50% - 495px);">
+        <div class="light-top" style="margin-bottom: 5px">
+          <div class="light-top" style="box-shadow: 0 0 4px 2px white">
+            <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
+          </div>
+        </div>
+        <div class="table-body">
+          <p class="text-notes">Hello</p>
+          <p class="text-notes">My name is Daniel</p>
+          <p class="text-notes">And here is Notes</p>
+          <p class="text-notes">...</p>
+          <p class="text-notes">Welcome!</p>
+        </div>
+        <div class="light-bot">
+          <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
+            <div class="light-bot" style="box-shadow: 0 0 1px 1px white"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="container"></div>
@@ -262,6 +284,14 @@ export default logic
 </script>
 
 <style>
+.hider-table{
+  height: 20px;
+  width: 1000px;
+  overflow: hidden;
+  position: absolute;
+  top: 92px;
+  left: 195px;
+}
 .table { 
   margin: 50vh auto;
   width: 1000px;
@@ -284,7 +314,7 @@ export default logic
 }
 .table-body { 
   height: 100%;
-  background: linear-gradient(to bottom, #00e0ff6b, #00ffc46b);
+  background: linear-gradient(to bottom, #00e0ff6b, #dc00ff6b);
   overflow: hidden;
   /* animation: scale-null .6s .5s forwards 1; */
 }
@@ -329,6 +359,11 @@ export default logic
   100%{
     transform: scaleX(1);
     opacity: 1;
+  }
+}
+@keyframes clip-pathw {
+  to{
+    clip-path: polygon(0% 110%, 100% 110%,100% 105%, 0% 105%);
   }
 }
 </style>
