@@ -18,12 +18,9 @@ export default {
         lowerPinkBord: false,
         prawnBord: false,
         smallYellowBordLeft: false,
-        // xStart: 0,
-        // yStart: 0,
-        // curX:0,
-        // curY: 0,
-        // xPos:0,
-        // yPos: 0
+        notes:['Hello','My name is Daniel','And here is Notes','...','Welcome!'],
+        inputHandler: '',
+        lastIdx: 0,
       }
     },
     methods:{
@@ -36,19 +33,6 @@ export default {
         topPos.setProperty('--top-pos',`${this.y += e.movementY}px` )
         leftPos.setProperty('--left-pos', `${this.x += e.movementX}px`)
       },
-      // movePhone(e){
-      //   let topPos =  document.documentElement.style
-      //   let leftPos = document.documentElement.style
-      //   let x = e.touches[0].clientX
-      //   let y = e.touches[0].clientY
-
-      //   if (!this.grabed) return
-      //   topPos.setProperty('--top-pos',`${(this.yPos + (y - this.yStart))/ 25}px`)
-      //   leftPos.setProperty('--left-pos', `${(this.xPos + (x-this.xStart))/ 25}px` )
-      //   this.xPos += (x - this.xStart)
-      //   this.yPos += (y - this.yStart)
-        
-      // },
       scaleFalsityToggle(bord){
         if (bord === 'left-pink-bord')  this.leftPinkBord = !this.leftPinkBord
         if (bord === 'big-orange-bord') this.bigOrangeBord = !this.bigOrangeBord
@@ -127,11 +111,27 @@ export default {
             event.preventDefault();
           }
         },{passive: false})
+      },
+      isTextEmpty(idx){
+        let lines = document.querySelectorAll('.upper-lines')
+        if (lines[idx].value.trim() === ''){
+          this.notes.splice(idx, 1)
+          console.log(idx);
+          console.log('spliced');
+          console.log(this.notes);
+        }
+      },
+      submitLine(idx){
+        const line = document.querySelectorAll('.upper-lines')[idx]
+        this.notes[idx] = line.value
+        console.log(line.value);
       }
     },
     mounted(){
       window.addEventListener('mouseup',() => this.grabed = false) // ЗАХВАТ ОКНА
       this.gifRestart()
       this.lockScroll()
+
+      console.log(this.notes);
     }
   }

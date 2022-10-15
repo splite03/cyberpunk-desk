@@ -238,12 +238,11 @@
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
           </div>
         </div>
-        <div class="table-body">
-          <p class="text-notes">Hello</p>
-          <p class="text-notes">My name is Daniel</p>
-          <p class="text-notes">And here is Notes</p>
-          <p class="text-notes">...</p>
-          <p class="text-notes">Welcome!</p>
+        <div class="table-body" @click="isTextEmpty(lastIdx), submitLine(lastIdx)">
+          <p class="text-notes notes-header">#Notes</p>
+          <input :value="note" :class="`text-notes input-text upper-lines`" v-for="(note, index) in notes" :key="note"  
+          @keypress.enter.exact="$event.target.blur(), isTextEmpty(index),submitLine(index)"
+          @click="this.lastIdx = index">
         </div>
         <div class="light-bot">
           <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
@@ -252,18 +251,16 @@
         </div>
       </div>
 
-      <div class="table" style="margin: 0;top: 0;height: 80vh;left: 0;position: absolute;overflow: hidden;clip-path: polygon(0% 10%, 100% 10%,100% 15%, 0% 15%);animation: clip-pathw 10s 3s backwards infinite steps(100);left: calc(50% - 495px);">
+      <div class="table" style="margin: 0;top: 10%;height: 80vh;position: absolute;background-color: #77ffff;overflow: hidden;clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);animation: glitch 10s infinite steps(100);">
         <div class="light-top" style="margin-bottom: 5px">
           <div class="light-top" style="box-shadow: 0 0 4px 2px white">
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
           </div>
         </div>
         <div class="table-body">
-          <p class="text-notes">Hello</p>
-          <p class="text-notes">My name is Daniel</p>
-          <p class="text-notes">And here is Notes</p>
-          <p class="text-notes">...</p>
-          <p class="text-notes">Welcome!</p>
+          <p class="text-notes notes-header" style="padding-left:30px">#Notes</p>
+          <p :class="`text-notes input-text`" style="padding-left: 30px"
+          v-for="(note) in notes" :key="note">{{note}}</p>
         </div>
         <div class="light-bot">
           <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
@@ -293,9 +290,8 @@ export default logic
   left: 195px;
 }
 .table { 
-  margin: 50vh auto;
   width: 1000px;
-  height: 0;
+  height: 80vh;
   z-index: 50;
   display: flex;
   flex-direction: column;
@@ -303,9 +299,9 @@ export default logic
   position: absolute;
   top: 10%;  
   left: calc(50% - 500px);
-  transform: scaleX(0);
-  opacity: 0;
-  animation: scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15); 
+  transform: scaleX(1);
+  opacity: 1;
+  /* animation: scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15);  */
 }
 .light-top { 
   width: 100%;
@@ -316,13 +312,8 @@ export default logic
   height: 100%;
   background: linear-gradient(to bottom, #00e0ff6b, #dc00ff6b);
   overflow: hidden;
-  /* animation: scale-null .6s .5s forwards 1; */
-}
-.table-body p{
-  padding-left: 20px;
-}
-.table-body p:first-child{
   padding-top: 30px;
+  /* animation: scale-null .6s .5s forwards 1; */
 }
 .light-bot { 
   width: 100%;
@@ -332,6 +323,18 @@ export default logic
   font-size: 40px;
   color: white;
   text-shadow: 0 0 5px rgb(133 184 255), 0 0 10px rgb(53 137 255), 0 0 15px rgb(0 107 255);
+  background: transparent;
+  border: 0;
+  width: 100%;
+  padding-left: 20px;
+}
+.notes-header{
+  margin-bottom: 10px;
+  font-size: 48px;
+}
+.input-text:focus-visible{
+  outline: 0;
+  background: #00e1ff4a;
 }
 @keyframes scale-null {
   to{
@@ -348,7 +351,6 @@ export default logic
   to{
     /* transform: scaleY(1); */
     height: 80vh;
-    margin: 0 auto;
     top: 10%;
   }
 }
@@ -361,9 +363,13 @@ export default logic
     opacity: 1;
   }
 }
-@keyframes clip-pathw {
-  to{
-    clip-path: polygon(0% 110%, 100% 110%,100% 105%, 0% 105%);
+@keyframes glitch {
+  15%{
+  }
+  75%{
+  }
+  100%{
+    clip-path: polygon(0% 110%, 100% 110%,100% 115%, 0% 115%);
   }
 }
 </style>
