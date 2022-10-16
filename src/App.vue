@@ -234,7 +234,7 @@
 
     <div class="container">
 
-      <div class="table">
+      <div class="table" v-if="notesOpened">
         <div class="light-top" style="margin-bottom: 5px">
           <div class="light-top" style="box-shadow: 0 0 4px 2px white">
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
@@ -262,7 +262,6 @@
               </div>
             </div>
           </div>
-          <div class="notes-back-clicker" @mousedown="isTextEmpty(lastIdx)"></div>
         </div>
         <div class="light-bot">
           <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
@@ -271,7 +270,7 @@
         </div>
       </div>
 
-      <div class="table" style="margin: 0;top: 10%;height: 80vh;position: absolute;background-color: #77ffff;overflow: hidden;clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);animation: glitch 25s 5s infinite steps(70);">
+      <div class="table table-cliped" v-if="notesOpened">
         <div class="light-top" style="margin-bottom: 5px">
           <div class="light-top" style="box-shadow: 0 0 4px 2px white">
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
@@ -313,43 +312,46 @@ export default logic
 }
 .table { 
   width: 1000px;
-  height: 80vh;
+  height: 0;
   z-index: 50;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   position: absolute;
-  top: 10%;  
+  top: 50%;  
   left: calc(50% - 500px);
-  transform: scaleX(1);
+  transform: scaleX(0);
   opacity: 1;
-  /* animation: scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15);  */
+  animation: scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15); 
+  /* scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15) */
+}
+.table-cliped{
+  margin: 0;
+  position: absolute;
+  background-color: #77ffff;
+  overflow: hidden;
+  clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);
+  animation: glitch 25s 5s infinite steps(70);
 }
 .light-top { 
   width: 100%;
   box-shadow: 0 0 10px 10px #00e0ff;
-  /* margin: 0 0 5px 0; */
 }
 .table-body { 
   height: 100%;
   background: linear-gradient(to bottom, #00e0ff6b, #dc00ff6b);
   overflow: hidden;
-  padding-top: 30px;
-  /* animation: scale-null .6s .5s forwards 1; */
 }
 .light-bot { 
   width: 100%;
   box-shadow: 0 0 10px 10px #00e0ff;
 }
 .table-text-wrapper{
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  top: 0;
-  left: 0;
+  padding-top: 30px;
   width: 100%;
-  z-index: 50;
   padding-top: 30px;
 }
 .table-input-wrapper{
@@ -407,14 +409,6 @@ export default logic
   box-shadow: 0 0 8px 3px rgb(85, 215, 255);
   background-color: white;
 }
-.notes-back-clicker{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 49;
-}
 .notes-header{
   margin-bottom: 10px;
   margin-left: 20px;
@@ -426,7 +420,7 @@ export default logic
 }
 @keyframes scale-null {
   to{
-    /* transform: scaleY(0); */
+    top: 50%;
     height: 0;
   }
 }

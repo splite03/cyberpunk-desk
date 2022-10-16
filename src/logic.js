@@ -21,6 +21,7 @@ export default {
         notes:['Hello','My name is Daniel','And here is Notes','...','Welcome!'],
         inputHandler: '',
         lastIdx: 0,
+        notesOpened: true
       }
     },
     methods:{
@@ -168,5 +169,19 @@ export default {
     mounted(){
       this.gifRestart()
       this.lockScroll()
+      setTimeout(() => {
+        document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
+    }, 3000)
+      setTimeout(() => {
+        this.notesOpened = false
+      },4100)
+
+      setTimeout(() => {
+        this.notesOpened = true
+      }, 6000) 
+
+      setTimeout(() => {
+        document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
+      }, 8000)
     }
   }
