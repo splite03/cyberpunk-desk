@@ -114,24 +114,59 @@ export default {
       },
       isTextEmpty(idx){
         let lines = document.querySelectorAll('.upper-lines')
-        if (lines[idx].value.trim() === ''){
-          this.notes.splice(idx, 1)
-          console.log(idx);
-          console.log('spliced');
-          console.log(this.notes);
+
+        this.rotateBtn()
+        try{
+          if (lines[idx].value.trim() === ''){
+            this.notes.splice(idx, 1)
+            return
+          }
+          this.submitLine(idx)
+        }catch {
+          console.log('Out of lines');
         }
       },
       submitLine(idx){
-        const line = document.querySelectorAll('.upper-lines')[idx]
-        this.notes[idx] = line.value
-        console.log(line.value);
+        try{
+          let line = document.querySelectorAll('.upper-lines')[idx]
+          this.notes[idx] = line.value
+          console.log(this.notes[idx]);
+        }catch{
+          console.log('error submit');
+        }
+      },
+      rotateBtn(){
+        const btnAdd = document.querySelector('.btn-add')
+
+        btnAdd.classList.remove('btn-add-rotate')
+      },
+      checkBoxToggle(idx){
+        const upper = document.querySelectorAll('.upper-box')
+        const lower = document.querySelectorAll('.lower-box')
+
+        if(!upper[idx].classList[2]){
+          upper[idx].classList.add('checked-box')
+          lower[idx].classList.add('checked-box')
+          return
+        }
+        upper[idx].classList.remove('checked-box')
+      },
+      addNote(){
+        let lastLine = document.querySelectorAll('.upper-lines')[this.notes.length - 1]
+        const btnAdd = document.querySelector('.btn-add')
+
+        if(lastLine.value !== ''){
+          this.notes.push('')
+          setTimeout(() => {
+            document.querySelectorAll('.upper-lines')[this.notes.length - 1].focus() // Обращаемся напрямую, ибо после пуша дом-дерево дополнилось и переменная стала неактуальна
+          }, 1)
+          btnAdd.classList.add('btn-add-rotate')
+          return
+        }
       }
     },
     mounted(){
-      window.addEventListener('mouseup',() => this.grabed = false) // ЗАХВАТ ОКНА
       this.gifRestart()
       this.lockScroll()
-
-      console.log(this.notes);
     }
   }

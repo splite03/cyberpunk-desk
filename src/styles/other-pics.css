@@ -22,7 +22,7 @@
     left: 0;
     height: 41px;
     width: 22px;
-    background-image: url(http://localhost:8080/img/elevator.041280ae.png);
+    background-image: url(@/assets/animated-parts/other/elevator.png);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 40;

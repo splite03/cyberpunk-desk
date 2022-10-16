@@ -1,6 +1,6 @@
 <template>
-  <div class="background" @mousemove.prevent="move($event)">
-    <div class="img" @mousedown.prevent="grabed = true">
+  <div class="background">
+    <div class="img" @mousedown="isTextEmpty(lastIdx)">
 
       <!-- ТРИ УРОВНЯ ГЛУБИНЫ - СЛОИ ГОРОДА -->
 
@@ -230,6 +230,8 @@
       
     </div>
 
+    <!-- БОРД С ЗАМЕТКАМИ -->
+
     <div class="container">
 
       <div class="table">
@@ -238,11 +240,29 @@
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
           </div>
         </div>
-        <div class="table-body" @click="isTextEmpty(lastIdx), submitLine(lastIdx)">
-          <p class="text-notes notes-header">#Notes</p>
-          <input :value="note" :class="`text-notes input-text upper-lines`" v-for="(note, index) in notes" :key="note"  
-          @keypress.enter.exact="$event.target.blur(), isTextEmpty(index),submitLine(index)"
-          @click="this.lastIdx = index">
+        <div class="table-body">
+          <div class="table-text-wrapper">
+            <p class="text-notes notes-header">#Notes</p>
+            <hr>
+
+            <div class="table-input-wrapper upper-wrapper" v-for="(note, index) in notes" :key="note">
+              <span class="btn-check-box upper-box" @click="checkBoxToggle(index)"></span>
+              <input :value="note" :class="`text-notes input-text upper-lines`" 
+              @keypress.enter.exact="$event.target.blur()"
+              @keypress="rotateBtn()"
+              @blur="isTextEmpty(index)"
+              @keydown.shift.delete="$event.target.value = '', $event.target.blur()">
+            </div>
+            <div class="btn-add-outer">
+              <div class="btn-add" @click="addNote()">
+                <div class="plus-stick" style="top: 10px; height: 20px;left: 35px;"></div>
+                <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;"></div>
+                <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;box-shadow: 0 0 2px 1px #ffffff;"></div>
+                <div class="plus-stick" style="top: 10px; height: 20px;left: 35px;box-shadow: 0 0 2px 1px #ffffff;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="notes-back-clicker" @mousedown="isTextEmpty(lastIdx)"></div>
         </div>
         <div class="light-bot">
           <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
@@ -251,7 +271,7 @@
         </div>
       </div>
 
-      <div class="table" style="margin: 0;top: 10%;height: 80vh;position: absolute;background-color: #77ffff;overflow: hidden;clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);animation: glitch 10s infinite steps(100);">
+      <div class="table" style="margin: 0;top: 10%;height: 80vh;position: absolute;background-color: #77ffff;overflow: hidden;clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);animation: glitch 25s 5s infinite steps(70);">
         <div class="light-top" style="margin-bottom: 5px">
           <div class="light-top" style="box-shadow: 0 0 4px 2px white">
             <div class="light-top" style="box-shadow: 0 0 1px 1px white"></div>
@@ -259,8 +279,10 @@
         </div>
         <div class="table-body">
           <p class="text-notes notes-header" style="padding-left:30px">#Notes</p>
-          <p :class="`text-notes input-text`" style="padding-left: 30px"
-          v-for="(note) in notes" :key="note">{{note}}</p>
+          <div class="table-input-wrapper" v-for="(note) in notes" :key="note" style="padding-left: 30px">
+            <span class="btn-check-box lower-box"></span>
+            <p :class="`text-notes input-text`">{{note}}</p>
+          </div>
         </div>
         <div class="light-bot">
           <div class="light-bot" style="box-shadow: 0 0 4px 2px white">
@@ -319,6 +341,59 @@ export default logic
   width: 100%;
   box-shadow: 0 0 10px 10px #00e0ff;
 }
+.table-text-wrapper{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  padding-top: 30px;
+}
+.table-input-wrapper{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  transition: height .8s ease-in-out;
+  height: 40px;
+}
+.btn-check-box{
+  height: 20px;
+  width: 20px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 12%;
+  margin: 0 10px 0 20px;
+  transition: box-shadow .1s ease-in-out, background-color .1s ease-in-out;
+}
+.btn-check-box:hover{
+  box-shadow: 0 0 4px 2px rgb(85, 215, 255);
+}
+.btn-add{
+  align-self: center;
+  height: 40px;
+  width: 72px;
+  position: relative;
+  margin: 0 auto;
+  transition: transform .2s ease-in-out;
+}
+.btn-add-outer{
+  align-self: center;
+  width: 84px;
+  background: #00fff74d;
+  border-radius: 5%;
+  border: 3px solid #00fff9;
+  margin-top: 5px;
+}
+.plus-stick{
+  box-shadow: 0 0 5px 4px #61ecff;
+  position: absolute;
+}
+.btn-add-rotate{
+  transform: rotate(45deg);
+}
 .text-notes{
   font-size: 40px;
   color: white;
@@ -326,10 +401,23 @@ export default logic
   background: transparent;
   border: 0;
   width: 100%;
-  padding-left: 20px;
+  padding-left: 10px;
+}
+.checked-box{
+  box-shadow: 0 0 8px 3px rgb(85, 215, 255);
+  background-color: white;
+}
+.notes-back-clicker{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 49;
 }
 .notes-header{
   margin-bottom: 10px;
+  margin-left: 20px;
   font-size: 48px;
 }
 .input-text:focus-visible{
@@ -364,9 +452,8 @@ export default logic
   }
 }
 @keyframes glitch {
-  15%{
-  }
-  75%{
+  20%{
+    clip-path: polygon(0% 110%, 100% 110%,100% 115%, 0% 115%);
   }
   100%{
     clip-path: polygon(0% 110%, 100% 110%,100% 115%, 0% 115%);
