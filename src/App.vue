@@ -242,19 +242,26 @@
         </div>
         <div class="table-body">
           <div class="table-text-wrapper">
-            <p class="text-notes notes-header">#Notes</p>
+            <div class="notes-header-wrapper">
+              <p class="text-notes notes-header">#Notes</p>
+              <div class="blue-power-wrapper">
+                <div class="btn-power-click-zone click-zone-btn-power-blue" @click="togglePower($event, 'off'), playSound('pew')"></div>
+                <div class="btn-power blue"></div>
+              </div>
+            </div>
             <hr>
 
             <div class="table-input-wrapper upper-wrapper" v-for="(note, index) in notes" :key="note">
-              <span class="btn-check-box upper-box" @click="checkBoxToggle(index)"></span>
+              <span class="btn-check-box upper-box" @click="checkBoxToggle(index), playSound('blip')"></span>
               <input :value="note" :class="`text-notes input-text upper-lines`" 
+              @click="playSound('tap')"
               @keypress.enter.exact="$event.target.blur()"
               @keypress="rotateBtn()"
               @blur="isTextEmpty(index)"
               @keydown.shift.delete="$event.target.value = '', $event.target.blur()">
             </div>
             <div class="btn-add-outer">
-              <div class="btn-add" @click="addNote()">
+              <div class="btn-add" @click="addNote(), playSound('tap')">
                 <div class="plus-stick" style="top: 10px; height: 20px;left: 35px;"></div>
                 <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;"></div>
                 <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;box-shadow: 0 0 2px 1px #ffffff;"></div>
@@ -278,7 +285,13 @@
         </div>
         <div class="table-body">
           <div class="table-text-wrapper">
-            <p class="text-notes notes-header" style="padding-left:30px">#Notes</p>
+            <div class="notes-header-wrapper" style="padding-left: 30px">
+              <p class="text-notes notes-header">#Notes</p>
+              <div class="blue-power-wrapper" style="margin-right: 30px">
+                <div class="btn-power-click-zone click-zone-btn-power-blue" @click="togglePower($event, 'off')"></div>
+                <div class="btn-power blue"></div>
+              </div>
+            </div>
             <div class="table-input-wrapper" v-for="(note) in notes" :key="note" style="padding-left: 30px">
               <span class="btn-check-box lower-box"></span>
               <p :class="`text-notes input-text`">{{note}}</p>
@@ -301,13 +314,31 @@
       </div>
       
       <div class="btn-power-wrapper">
-        <div class="btn-power-click-zone" @click="togglePower($event, 'on')"></div>
+        <div class="btn-power-click-zone" @click="togglePower($event, 'on'), playSound('pew')"></div>
         <div class="btn-power"></div>
       </div>
 
+      <div class="back-to">Back to portfolio</div>
+      <div class="play" @click.prevent="play($event)"></div>
+
+      <audio loop preload ="auto" class="music">
+        <source src="@/audio/electronic-senses-yesterday.mp3">
+      </audio>
+      <audio preload ="auto" class="pew">
+        <source src="@/audio/pew.mp3">
+      </audio>
+      <audio preload ="auto" class="tap">
+        <source src="@/audio/tap.mp3">
+      </audio>
+      <audio preload ="auto" class="shh">
+        <source src="@/audio/shh.mp3">
+      </audio>
+      <audio preload ="auto" class="blip">
+        <source src="@/audio/blip.mp3">
+      </audio>
+
     </div>
   </div>
-  <div class="container"></div>
 </template>
 
 <script>
@@ -317,13 +348,46 @@ export default logic
 </script>
 
 <style>
+.play{
+  height: 30px;
+  width: 30px;
+  z-index: 50;
+  position: absolute;
+  top: 32px;
+  left: 350px;
+  background-size: cover;
+  background-image: url(@/assets/animated-parts/other/play.png);
+}
+.play:hover{
+  background-image:url(@/assets/animated-parts/other/play-light.png) ;
+}
+.playing{
+  background-image:url(@/assets/animated-parts/other/pause.png) ;
+}
+.playing:hover{
+  background-image:url(@/assets/animated-parts/other/pause-light.png) ;
+}
+.back-to{
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 36px;
+  z-index: 50;
+  color: rgba(255, 255, 255, 0.297);
+  cursor: pointer;
+  transition: all .4s ease-in-out;
+}
+.back-to:hover{
+  color: #beebff;
+  text-shadow: 0 0 15px #7dfffc;
+}
 .btn-power-wrapper{
   position: absolute;
   top: calc(50% - 94px);
   left: calc(50% - 85px);
   height: 189px;
   width: 171px;
-  z-index: 55;
+  z-index: 49;
   transition: all .3s ease-in-out;
 }
 .btn-power-click-zone{
@@ -344,6 +408,36 @@ export default logic
 }
 .btn-power-click-zone:hover + .btn-power{
   background-image: url(@/assets/animated-parts/other/power-hover-light.png);
+}
+.blue-power-wrapper { 
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 63px;
+  width: 66px;
+  z-index: 55;
+  transition: all .3s;
+  margin-right: 50px;
+}
+.click-zone-btn-power-blue { 
+  height: 38px;
+  width: 34px;
+  position: absolute;
+  top: calc(50% - 19px);
+  left: calc(50% - 16px);
+  cursor: pointer;
+}
+.blue { 
+  background-image: url(@/assets/animated-parts/other/power-hover-blue-unlight.png);
+}
+.click-zone-btn-power-blue:hover + .blue{
+  background-image: url(@/assets/animated-parts/other/power-hover-blue-light.png);
+}
+.notes-header-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .hider-table{
   height: 20px;
@@ -430,7 +524,7 @@ export default logic
   background: #00fff74d;
   border-radius: 5%;
   border: 3px solid #7dfffc;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 .plus-stick{
   box-shadow: 0 0 5px 4px #61ecff;
@@ -453,7 +547,6 @@ export default logic
   background-color: white;
 }
 .notes-header{
-  margin-bottom: 10px;
   margin-left: 20px;
   font-size: 48px;
 }

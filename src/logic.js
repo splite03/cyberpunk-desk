@@ -21,7 +21,8 @@ export default {
         notes:['Сделать кнопку отключения, включения','задать состояние офф на старте','сделать кнопку включения на самом IMG','сделать кнопку выхода из проекта на портфолио','добавить музыку','добавить звуки тапов','добавить кнопку отключения звуков','доделать анимацию бордов','докинуть голову анимацию','докинуть провода','сделать анимацию загрузки','дорисовать дым','залить в портфолио и в гит'],
         inputHandler: '',
         lastIdx: 0,
-        notesOpened: false
+        notesOpened: false,
+        playing: false,
       }
     },
     methods:{
@@ -116,10 +117,13 @@ export default {
       isTextEmpty(idx){
         let lines = document.querySelectorAll('.upper-lines')
 
-        this.rotateBtn()
+        if(this.notes.length <= 14){
+          this.rotateBtn()
+        }
         try{
           if (lines[idx].value.trim() === ''){
             this.notes.splice(idx, 1)
+            this.playSound('shh')
             return
           }
           this.submitLine(idx)
@@ -137,9 +141,12 @@ export default {
         }
       },
       rotateBtn(){
-        const btnAdd = document.querySelector('.btn-add')
-
-        btnAdd.classList.remove('btn-add-rotate')
+        try{
+          const btnAdd = document.querySelector('.btn-add')
+          btnAdd.classList.remove('btn-add-rotate')
+        }catch{
+          console.log('Notes closed');
+        }
       },
       checkBoxToggle(idx){
         const upper = document.querySelectorAll('.upper-box')
@@ -156,28 +163,60 @@ export default {
         let lastLine = document.querySelectorAll('.upper-lines')[this.notes.length - 1]
         const btnAdd = document.querySelector('.btn-add')
 
-        if(lastLine.value !== ''){
+        btnAdd.classList.add('btn-add-rotate')
+        if(lastLine.value !== '' && this.notes.length < 14){
           this.notes.push('')
           setTimeout(() => {
             document.querySelectorAll('.upper-lines')[this.notes.length - 1].focus() // Обращаемся напрямую, ибо после пуша дом-дерево дополнилось и переменная стала неактуальна
           }, 1)
-          btnAdd.classList.add('btn-add-rotate')
           return
         }
       },
       togglePower(event, action){
-        console.log(event);
+        const tables = document.querySelectorAll('.table')
+        const button = document.querySelector('.btn-power-wrapper')
+        console.log(button);
         if (action === 'on'){
-          event.target.parentNode.style.opacity = '0'
+          button.style.opacity = '0'
           setTimeout(() => {
             this.notesOpened = true
           }, 300)
+          return
         }
+        if(action === 'off'){
+          event.target.parentNode.style.opacity = '0'
+          setTimeout(() => {
+            for (let table of tables){
+              table.style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
+            }
+          }, 300)
+          setTimeout(() => {
+            button.style.opacity = '1'
+            this.notesOpened = false
+          }, 1500)
+        }
+      },
+      play(event){
+        if(!this.playing){
+          event.target.classList.add('playing')
+          document.querySelector('.music').play()
+          this.playing = true
+          return
+        }
+        event.target.classList.remove('playing')
+        document.querySelector('.music').pause()
+        this.playing = false
+      },
+      playSound(sound){
+        document.querySelector(`.${sound}`).play()
       }
     },
     mounted(){
+      const musicPlayer = document.querySelector('.music')
+      
       this.gifRestart()
       this.lockScroll()
+      // musicPlayer.play()
     //   setTimeout(() => {
     //     document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
     // }, 3000)
