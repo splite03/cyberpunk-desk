@@ -18,10 +18,10 @@ export default {
         lowerPinkBord: false,
         prawnBord: false,
         smallYellowBordLeft: false,
-        notes:['Hello','My name is Daniel','And here is Notes','...','Welcome!'],
+        notes:['Сделать кнопку отключения, включения','задать состояние офф на старте','сделать кнопку включения на самом IMG','сделать кнопку выхода из проекта на портфолио','добавить музыку','добавить звуки тапов','добавить кнопку отключения звуков','доделать анимацию бордов','докинуть голову анимацию','докинуть провода','сделать анимацию загрузки','дорисовать дым','залить в портфолио и в гит'],
         inputHandler: '',
         lastIdx: 0,
-        notesOpened: true
+        notesOpened: false
       }
     },
     methods:{
@@ -164,24 +164,33 @@ export default {
           btnAdd.classList.add('btn-add-rotate')
           return
         }
+      },
+      togglePower(event, action){
+        console.log(event);
+        if (action === 'on'){
+          event.target.parentNode.style.opacity = '0'
+          setTimeout(() => {
+            this.notesOpened = true
+          }, 300)
+        }
       }
     },
     mounted(){
       this.gifRestart()
       this.lockScroll()
-      setTimeout(() => {
-        document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
-    }, 3000)
-      setTimeout(() => {
-        this.notesOpened = false
-      },4100)
+    //   setTimeout(() => {
+    //     document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
+    // }, 3000)
+    //   setTimeout(() => {
+    //     this.notesOpened = false
+    //   },4100)
 
-      setTimeout(() => {
-        this.notesOpened = true
-      }, 6000) 
+    //   setTimeout(() => {
+    //     this.notesOpened = true
+    //   }, 6000) 
 
-      setTimeout(() => {
-        document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
-      }, 8000)
+    //   setTimeout(() => {
+    //     document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
+    //   }, 8000)
     }
   }

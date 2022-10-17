@@ -277,10 +277,20 @@
           </div>
         </div>
         <div class="table-body">
-          <p class="text-notes notes-header" style="padding-left:30px">#Notes</p>
-          <div class="table-input-wrapper" v-for="(note) in notes" :key="note" style="padding-left: 30px">
-            <span class="btn-check-box lower-box"></span>
-            <p :class="`text-notes input-text`">{{note}}</p>
+          <div class="table-text-wrapper">
+            <p class="text-notes notes-header" style="padding-left:30px">#Notes</p>
+            <div class="table-input-wrapper" v-for="(note) in notes" :key="note" style="padding-left: 30px">
+              <span class="btn-check-box lower-box"></span>
+              <p :class="`text-notes input-text`">{{note}}</p>
+            </div>
+            <div class="btn-add-outer" style="margin-left: 30px">
+              <div class="btn-add" >
+                <div class="plus-stick" style="top: 10px; height: 20px;left: 35px;"></div>
+                <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;"></div>
+                <div class="plus-stick" style="top: 20px; width: 20px;left: 25px;box-shadow: 0 0 2px 1px #ffffff;"></div>
+                <div class="plus-stick" style="top: 10px; height: 20px;left: 35px;box-shadow: 0 0 2px 1px #ffffff;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="light-bot">
@@ -288,6 +298,11 @@
             <div class="light-bot" style="box-shadow: 0 0 1px 1px white"></div>
           </div>
         </div>
+      </div>
+      
+      <div class="btn-power-wrapper">
+        <div class="btn-power-click-zone" @click="togglePower($event, 'on')"></div>
+        <div class="btn-power"></div>
       </div>
 
     </div>
@@ -302,6 +317,34 @@ export default logic
 </script>
 
 <style>
+.btn-power-wrapper{
+  position: absolute;
+  top: calc(50% - 94px);
+  left: calc(50% - 85px);
+  height: 189px;
+  width: 171px;
+  z-index: 55;
+  transition: all .3s ease-in-out;
+}
+.btn-power-click-zone{
+  height: 114px;
+  width: 101px;
+  position: absolute;
+  top: calc(50% - 57px);
+  left: calc(50% - 50px);
+  cursor: pointer;
+}
+.btn-power{
+  background-image: url(@/assets/animated-parts/other/power-hover-unlight.png);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 55;
+  transition: all .15s ease-in-out;
+}
+.btn-power-click-zone:hover + .btn-power{
+  background-image: url(@/assets/animated-parts/other/power-hover-light.png);
+}
 .hider-table{
   height: 20px;
   width: 1000px;
@@ -331,7 +374,7 @@ export default logic
   background-color: #77ffff;
   overflow: hidden;
   clip-path: polygon(0% -5%, 100% -5%,100% 0%, 0% 0%);
-  animation: glitch 25s 5s infinite steps(70);
+  animation: glitch 25s 5s infinite steps(70), scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15); ;
 }
 .light-top { 
   width: 100%;
@@ -386,7 +429,7 @@ export default logic
   width: 84px;
   background: #00fff74d;
   border-radius: 5%;
-  border: 3px solid #00fff9;
+  border: 3px solid #7dfffc;
   margin-top: 5px;
 }
 .plus-stick{
