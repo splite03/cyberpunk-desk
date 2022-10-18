@@ -23,6 +23,8 @@ export default {
         lastIdx: 0,
         notesOpened: false,
         playing: false,
+        soundsOff: false,
+        headLooking: false
       }
     },
     methods:{
@@ -117,6 +119,7 @@ export default {
       isTextEmpty(idx){
         let lines = document.querySelectorAll('.upper-lines')
 
+        if(!this.notesOpened) return
         if(this.notes.length <= 14){
           this.rotateBtn()
         }
@@ -135,7 +138,6 @@ export default {
         try{
           let line = document.querySelectorAll('.upper-lines')[idx]
           this.notes[idx] = line.value
-          console.log(this.notes[idx]);
         }catch{
           console.log('error submit');
         }
@@ -164,27 +166,39 @@ export default {
         const btnAdd = document.querySelector('.btn-add')
 
         btnAdd.classList.add('btn-add-rotate')
-        if(lastLine.value !== '' && this.notes.length < 14){
-          this.notes.push('')
-          setTimeout(() => {
-            document.querySelectorAll('.upper-lines')[this.notes.length - 1].focus() // Обращаемся напрямую, ибо после пуша дом-дерево дополнилось и переменная стала неактуальна
-          }, 1)
-          return
+        try{
+          if(lastLine.value !== '' && this.notes.length < 14){
+            this.notes.push('')
+            setTimeout(() => {
+              document.querySelectorAll('.upper-lines')[this.notes.length - 1].focus()
+            }, 50)
+            return
+          }
+        }catch{
+          this.notes.length === 0 ? this.notes.push('') : console.log('Some error with adding note');
         }
       },
       togglePower(event, action){
         const tables = document.querySelectorAll('.table')
         const button = document.querySelector('.btn-power-wrapper')
-        console.log(button);
+        const blueButton = document.querySelector('.btn-power-blue')
+        const soundButton = document.querySelector('.sounds-off')
+
         if (action === 'on'){
           button.style.opacity = '0'
           setTimeout(() => {
             this.notesOpened = true
           }, 300)
+          if (this.soundsOff){
+            setTimeout(() => {
+              document.querySelector('.sounds-off').classList.add('sounds-disabled')
+              console.log(document.querySelector('.sounds-off'));
+            },400)
+          }
           return
         }
         if(action === 'off'){
-          event.target.parentNode.style.opacity = '0'
+          blueButton.classList.add('btn-power-blue-clicked')
           setTimeout(() => {
             for (let table of tables){
               table.style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
@@ -208,28 +222,27 @@ export default {
         this.playing = false
       },
       playSound(sound){
+        if(this.soundsOff) return
         document.querySelector(`.${sound}`).play()
+      },
+      disableSounds(event){
+        this.soundsOff ? event.target.classList.remove('sounds-disabled') : event.target.classList.add('sounds-disabled') 
+        this.soundsOff = !this.soundsOff
+      },
+      headMove(event){
+        if (this.headLooking) return
+        event.target.lastChild.style.left = '10px'
+        this.headLooking = true
+        setTimeout(() => {
+          event.target.lastChild.style.left = '8px'
+          this.headLooking = false
+        }, 2000)
       }
     },
     mounted(){
       const musicPlayer = document.querySelector('.music')
-      
+      window.addEventListener('mouseup',() => this.grabed = false)
       this.gifRestart()
       this.lockScroll()
-      // musicPlayer.play()
-    //   setTimeout(() => {
-    //     document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
-    // }, 3000)
-    //   setTimeout(() => {
-    //     this.notesOpened = false
-    //   },4100)
-
-    //   setTimeout(() => {
-    //     this.notesOpened = true
-    //   }, 6000) 
-
-    //   setTimeout(() => {
-    //     document.querySelector('.table').style.animation = 'scaleX-full .5s .3s forwards 1 steps(15), scale-full .6s .8s forwards 1 steps(15),scale-null .6s forwards 1 steps(15),scaleX-null .5s .6s forwards 1 steps(15)'
-    //   }, 8000)
     }
   }

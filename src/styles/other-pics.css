@@ -1,4 +1,22 @@
-
+.head-zone-click { 
+    position: absolute;
+    bottom: 168px;
+    left: 883px;
+    height: 35px;
+    width: 23px;
+    z-index: 40;
+    cursor: pointer;
+}
+.people-head { 
+    height: 7px;
+    width: 7px;
+    position: absolute;
+    top: 19px;
+    left: 7px;
+}
+.head-move{
+    left: 10px;
+}
 .elevator-wrapper{
     position: absolute;
     bottom: 0px;
@@ -47,4 +65,22 @@
     bottom: 180px;
     left: 727px;
     z-index: 38;
+}
+.rope{
+    position: absolute;
+    z-index: 29;
+}
+.short-rope{
+    width: 102px;
+    height: 48px;
+}
+
+.left-side-short-rope{
+    bottom: 100px;
+    left: 43px;
+}
+.left-side-short-rope-second{
+    bottom: 86px;
+    left: 49px;
+    rotate: -15deg;
 }

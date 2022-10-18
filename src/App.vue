@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="img" @mousedown="isTextEmpty(lastIdx)">
+    <div class="img" @mousedown="isTextEmpty(lastIdx), grabed = true" @mousemove="move($event)">
 
       <!-- ТРИ УРОВНЯ ГЛУБИНЫ - СЛОИ ГОРОДА -->
 
@@ -222,11 +222,14 @@
         <div class="elevator-path"></div>
         <div class="elevator"></div>
       </div>
-      <div class="head-zone-click">
-        <div class="people-head"></div>
+      <div class="head-zone-click" @click="headMove($event)">
+        <img class="people-head" src="@/assets/animated-parts/other/head.png">
       </div>
       <div class="vape"></div>
       <div class="smoke-guy"></div>
+      <img src="@/assets/animated-parts/other/first-rope.gif" class="rope short-rope left-side-short-rope" alt="">
+      <img src="@/assets/animated-parts/other/first-rope.gif" class="rope short-rope left-side-short-rope-second" alt="">
+      <!-- <img src="@/assets/animated-parts/other/second-rope.gif" class="rope long-rope left-side-long-rope" alt=""> -->
       
     </div>
 
@@ -243,11 +246,9 @@
         <div class="table-body">
           <div class="table-text-wrapper">
             <div class="notes-header-wrapper">
-              <p class="text-notes notes-header">#Notes</p>
-              <div class="blue-power-wrapper">
-                <div class="btn-power-click-zone click-zone-btn-power-blue" @click="togglePower($event, 'off'), playSound('pew')"></div>
-                <div class="btn-power blue"></div>
-              </div>
+              <p class="text-notes notes-header" style="width: 80%">#Notes {{notes.length}}/14</p>
+              <div class="sounds-off" @click="disableSounds($event)"></div>
+              <div class="btn-power-blue" @click="togglePower($event, 'off'), playSound('pew')"></div>
             </div>
             <hr>
 
@@ -409,29 +410,30 @@ export default logic
 .btn-power-click-zone:hover + .btn-power{
   background-image: url(@/assets/animated-parts/other/power-hover-light.png);
 }
-.blue-power-wrapper { 
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 63px;
-  width: 66px;
-  z-index: 55;
+.btn-power-blue{
+  background-image: url(@/assets/animated-parts/other/power-hover-blue-light.png);
+  background-size: cover;
   transition: all .3s;
-  margin-right: 50px;
-}
-.click-zone-btn-power-blue { 
-  height: 38px;
-  width: 34px;
-  position: absolute;
-  top: calc(50% - 19px);
-  left: calc(50% - 16px);
+  height: 60px;
+  width: 60px;
   cursor: pointer;
 }
-.blue { 
-  background-image: url(@/assets/animated-parts/other/power-hover-blue-unlight.png);
+.sounds-off{
+  background-image: url(@/assets/animated-parts/other/sound-off.png);
+  background-size: cover;
+  transition: all .3s;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
 }
-.click-zone-btn-power-blue:hover + .blue{
-  background-image: url(@/assets/animated-parts/other/power-hover-blue-light.png);
+.sounds-off:hover, .btn-power-blue:hover{
+  opacity: .7;
+}
+.sounds-disabled{
+  background-image: url(@/assets/animated-parts/other/sound-off-disabled.png);
+}
+.btn-power-blue-clicked{
+  background-image: url(@/assets/animated-parts/other/power-hover-blue-unlight.png);
 }
 .notes-header-wrapper{
   display: flex;
