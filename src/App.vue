@@ -1,5 +1,15 @@
 <template>
-  <div class="background">
+  <div class="loading-notes" v-if="notLoaded">
+    <div class="loading-notes-left-door"></div>
+    <div class="loading-notes-right-door"></div>
+    <div class="loading-wrapper">
+      <div class="loading-header">{{loadingHeader}}</div>
+      <div class="loading-bar">
+        <div class="loading-bar-progress"></div>
+      </div>
+    </div>
+  </div>
+  <div class="background" v-show="!notesLoading">
     <div class="img" @mousedown="isTextEmpty(lastIdx), grabed = true" @mousemove="move($event)">
 
       <!-- ТРИ УРОВНЯ ГЛУБИНЫ - СЛОИ ГОРОДА -->
@@ -349,6 +359,56 @@ export default logic
 </script>
 
 <style>
+.loading-notes { 
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 60;
+}
+.loading-wrapper { 
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 125px);
+  animation: opacity-loading 1s 6s 1 forwards steps(20), opacity-loading 1s 1 reverse forwards steps(20);
+}
+.loading-notes-left-door { 
+  background: #171738;
+  height: 100%;
+  width: 50%;
+  animation: opacity-loading 1s 7.5s 1 forwards steps(10);
+  /* animation: left-door-move 1s 7.5s 1 forwards steps(20); */
+}
+.loading-notes-right-door { 
+  background: #171738;
+  height: 100%;
+  width: 50%;
+  /* animation: right-door-move 1s 7.5s 1 forwards steps(20); */
+  animation: opacity-loading 1s 7.5s 1 forwards steps(20);
+}
+.loading-header { 
+  font-size: 40px;
+  text-shadow: 0 0 15px #00e0ff;
+  color: white;
+  margin-bottom: 5px;
+}
+.loading-bar { 
+  overflow: hidden;
+  height: 40px;
+  width: 250px;
+  border: 4px solid white;
+}
+.loading-bar-progress { 
+  height: 40px;
+  background: white;
+  width: 0%;
+  animation: loading-notes 4s 1s 1 forwards steps(5);
+}
 .play{
   height: 30px;
   width: 30px;
@@ -556,6 +616,20 @@ export default logic
   outline: 0;
   background: #00e1ff4a;
 }
+@keyframes left-door-move {
+  to{
+    translate: -100%;
+  }
+}
+@keyframes right-door-move {
+  to{
+    translate: 100%;
+  }
+}@keyframes opacity-loading {
+  to{
+    opacity: 0;
+  }
+}
 @keyframes scale-null {
   to{
     top: 50%;
@@ -589,6 +663,26 @@ export default logic
   }
   100%{
     clip-path: polygon(0% 110%, 100% 110%,100% 115%, 0% 115%);
+  }
+}
+@keyframes loading-notes {
+  20%{
+    width: 30%;
+  }
+  25%{
+    width: 30%;
+  }
+  50%{
+    width: 50%;
+  }
+  80%{
+    width: 80%
+  }
+  90%{
+    width: 80%
+  }
+  100%{
+    width: 100%;
   }
 }
 </style>

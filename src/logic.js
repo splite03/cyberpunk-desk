@@ -24,7 +24,10 @@ export default {
         notesOpened: false,
         playing: false,
         soundsOff: false,
-        headLooking: false
+        headLooking: false,
+        notesLoading: true,
+        notLoaded: true,
+        loadingHeader: 'Loading...'
       }
     },
     methods:{
@@ -241,6 +244,20 @@ export default {
     },
     mounted(){
       const musicPlayer = document.querySelector('.music')
+
+      setInterval(() => {
+        if (this.loadingHeader.split('Loading')[1].length === 3) return this.loadingHeader = 'Loading'
+        if (this.loadingHeader.split('Loading')[1].length === 0) return this.loadingHeader = 'Loading.'
+        if (this.loadingHeader.split('Loading')[1].length === 1) return this.loadingHeader = 'Loading..'
+        if (this.loadingHeader.split('Loading')[1].length === 2) return this.loadingHeader = 'Loading...'
+        console.log('op');
+      }, 700)
+      setTimeout(() => {
+        this.notesLoading = false
+      }, 7500)
+      setTimeout(() => {
+        this.notLoaded = false
+      }, 8500)
       window.addEventListener('mouseup',() => this.grabed = false)
       this.gifRestart()
       this.lockScroll()
